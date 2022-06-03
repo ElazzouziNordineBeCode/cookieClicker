@@ -11,29 +11,3 @@ body {
   font-family: "Poppins", sans-serif;
   height: 100vh;
 }
-
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-/* --------------- */
-/* -- COOKIE IMG - */
-/* --------------- */
-#cookie-img {
-  text-align: center;
-  width: 100vw;
-}
-
-#cookie-img img {
-  width: 20%;
-  height: auto;
-}
-
-.cookie-counter {
-  border: 1px solid black;
-  width: 300px;
-  text-align: center;
-}

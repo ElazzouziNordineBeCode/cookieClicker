@@ -12,13 +12,16 @@
     <div class="container">
       <!-- LEFT SIDE-->
       <div class="container-left">
-        <div class="label-score"><span class="cookie-number">0</span>Cookies</div>
-        <button class="label-multiply">x<span class="cookie-multiply">1</span></button>
+        <div class="label-score"><span class="cookie-number">0</span>Cookies</div>4
+          <button id="multiply-btn">
+            <h2 class="multiply-label">Multiplicateur</h2>
+            <h4 class="multiply-label">x<span class="multiply-total-value">1</span></h4>
+          </button>
         <img style="display: block" class="cookie-clic" src="cookie.png" />
       </div>
       <!-- RIGHT SIDE-->
       <div class="container right">
-        <button class="label-price" id="mult2">
+        <!-- <button class="label-price" id="mult2">
           <h2>Acheter le x2</h2>
           <span class="price">20</span>
         </button>
@@ -29,8 +32,41 @@
         <button class="label-price" id="mult4">
           <h2>Acheter le x4</h2>
           <span class="price">40</span>
-        </button>
+        </button> -->
+        <tamplate id="boostX2-container">
+          <button id="boostX2-btn">
+            <h2 class="boostX2-label">Booster X2</h2>
+            <h4 class="boostX2-price-label">Prix : <span class="boostX2-price-value"> 70</span> cookies</h4>
+          </button>
+        </tamplate>
+        <tamplate id="boostX3-container">
+          <button id="boostX3-btn">
+            <h2 class="boostX3-label">Booster X3</h2>
+            <h4 class="boostX3-price-label">Prix : <span class="boostX3-price-value"> 100</span> cookies</h4>
+          </button>
+        </tamplate>
+        <tamplate id="boostX4-container">
+          <button id="boostX4-btn">
+            <h2 class="boostX4-label">Booster X4</h2>
+            <h4 class="boostX4-price-label">Prix : <span class="boostX4-price-value"> 130</span> cookies</h4>
+          </button>
+        </tamplate>
       </div>
+      <tamplate id="autoClic-container">
+        <button id="autoClic-btn">
+          <h2 class="autoClic-label">Auto clic +1</h2>
+          <h4 class="autoClic-total-label">Auto clic total: <span class="autoClic-total-value">1</span></h4>
+          <h4 class="autoClic-time-label">Générer toute les: <span class="autoClic-total-value">1</span> Seconde</h4>
+          <h4 class="autoClic-price-label">Prix : <span class="autoClic-price-value"> 20</span> cookies</h4>
+        </button>
+      </tamplate>
+      <tamplate id="bonus-container">
+        <button id="bonus-btn">
+          <h2 class="bonus-label">Bonus 200%</span></h2>
+          <h4 class="bonus-time-label">Valable <span class="bonus-total-value">30</span> Seconde</h4>
+          <h4 class="bonus-price-label">Prix : <span class="bonus-price-value"> 50</span> cookies</h4>
+        </button>
+      </tamplate>
     </div>
     <script src="app.js"></script>
   </body>

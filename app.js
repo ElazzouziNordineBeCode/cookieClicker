@@ -31,7 +31,7 @@ cookieBtn.ondragstart = () => {
 const animeMultiplyValue = (top, left) => {
   // keep the current multiply value and anime it at clicking
   clicAnime.innerHTML = `${
-    bonus200Counter === 2 ? "200%" : multiplicator.innerHTML
+    bonus200Counter === 2 ? "200%" : `+${multiplicator.innerHTML}`
   }`;
   clicAnime.animate(
     [
@@ -109,7 +109,7 @@ boosters.forEach((booster) => {
     score.innerHTML =
       parseInt(score.innerHTML) - parseInt(boosterPrice.innerHTML);
     // increase the booster +10%
-    boosterPrice.innerHTML = Math.round(parseInt(boosterPrice.innerHTML) * 1.1);
+    boosterPrice.innerHTML = Math.round(parseInt(boosterPrice.innerHTML) * 1.8);
     // after updating score disable booster wich we can't buy it
     disableButton(boosters, "booster-price-value");
     // after updating score disable bonus wich we can't buy it

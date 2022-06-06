@@ -1,62 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
-    <title>Cookie CLicker</title>
-  </head>
-  <body>
-    <div class="container">
-      <!-- LEFT SIDE-->
-      <div class="container-left">
-        <div class="label-score"><span class="cookie-number">0</span>Cookies</div>
-          <button id="multiply-btn">
-            <h2 class="multiply-label">Multiplicateur</h2>
-            <h4 class="multiply-label">x<span class="multiply-total-value">1</span></h4>
-          </button>
-        <img style="display: block" class="cookie-clic" src="cookie.png" />
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
+  <title>Cookie CLicker</title>
+</head>
+
+<body>
+  <div class="container">
+    <!-- LEFT SIDE-->
+    <div class="container-left">
+      <!-- score of cookies -->
+      <div class="label-score"><span class="cookie-number">0</span>Cookies</div>
+      <div class="timers">
+        <div class="timer"><span class="timer-auto-clic">0</span>Cookies toutes les 1 seconde</div>
+        <div class="timer">Bonus 200%:<span class="timer-bonus200">0</span>s</div>
       </div>
-      <!-- RIGHT SIDE-->
-      <div class="container right">
-        </tamplate>
-        <tamplate id="boostX2-container">
-          <button id="boostX2-btn">
-            <h2 class="boostX2-label">Booster X2</h2>
-            <h4 class="boostX2-price-label">Prix : <span class="boostX2-price-value"> 70</span> cookies</h4>
-          </button>
-        </tamplate>
-        <tamplate id="boostX3-container">
-          <button id="boostX3-btn">
-            <h2 class="boostX3-label">Booster X3</h2> 
-            <h4 class="boostX3-price-label">Prix : <span class="boostX3-price-value"> 100</span> cookies</h4>
-          </button>
-        </tamplate>
-        <tamplate id="boostX4-container">
-          <button id="boostX4-btn">
-            <h2 class="boostX4-label">Booster X4</h2>
-            <h4 class="boostX4-price-label">Prix : <span class="boostX4-price-value"> 130</span> cookies</h4>
-          </button>
-        </tamplate>
+      <!-- multiplicator button -->
+      <button id="multiply-btn">
+        <h2 class="multiply-label">Multiplicateur</h2>
+        <h4 class="multiply-label">x<span class="multiply-total-value">1</span></h4>
+      </button>
+      <!-- multiplicators icons -->
+      <div class="multiply-icons">
+        <span class="multiply-icon">
+          <img id="multiply-icon-escargot" width='50' src="escargot-sm.png" alt="escargot-sm">:<span
+            class="multiply-icon-value-x2">0</span>
+        </span>
+        <span class="multiply-icon">
+          <img id="multiply-icon-speedy" width='50' src="speedy-sm.png" alt="speedy-sm">:<span
+            class="multiply-icon-value-x3">0</span>
+        </span>
+        <span class="multiply-icon">
+          <img id="multiply-icon-bipbip" width='50' src="bipbip-sm.png" alt="bipbip-sm">:<span
+            class="multiply-icon-value-x4">0</span>
+        </span>
       </div>
-      <tamplate id="autoClic-container">
-        <button id="autoClic-btn">
-          <h2 class="autoClic-label">Auto clic +1</h2>
-          <h4 class="autoClic-total-label">Auto clic total: <span class="autoClic-total-value">1</span></h4>
-          <h4 class="autoClic-time-label">Générer toute les: <span class="autoClic-total-value">1</span> Seconde</h4>
-          <h4 class="autoClic-price-label">Prix : <span class="autoClic-price-value"> 20</span> cookies</h4>
-        </button>
-      </tamplate>
-      <tamplate id="bonus-container">
-        <button id="bonus-btn">
-          <h2 class="bonus-label">Bonus 200%</span></h2>
-          <h4 class="bonus-time-label">Valable <span class="bonus-total-value">30</span> Seconde</h4>
-          <h4 class="bonus-price-label">Prix : <span class="bonus-price-value"> 50</span> cookies</h4>
-        </button>
-      </tamplate>
+      <!-- cookies button -->
+      <div class="cookie-clic-container">
+        <img class="cookie-clic" src="cookie.png" />
+        <!-- to anime +1 at clicking -->
+        <span id="anime-onclic"></span>
+      </div>
     </div>
-    <script src="app.js"></script>
-  </body>
+    <!-- RIGHT SIDE-->
+    <div class="container right">
+      <!-- booster x2 -->
+      <button class="booster-btn" id="boosterX2">
+        <div class="booster-icon">
+          <img src="escargot.png" alt="escargot">
+        </div>
+        <div class="booster-price">
+          <h2 class="booster-label">Booster X2</h2>
+          <h4 class="booster-price-label">Prix : <span class="booster-price-value"> 10</span> cookies</h4>
+        </div>
+      </button>
+      <!-- booster x3 -->
+      <button class="booster-btn" id="boosterX3">
+        <div class="booster-icon">
+          <img src="speedy.png" alt="speedy gonzales">
+        </div>
+        <div class="booster-price">
+          <h2 class="booster-label">Booster X3</h2>
+          <h4 class="booster-price-label">Prix : <span class="booster-price-value"> 100</span> cookies</h4>
+        </div>
+      </button>
+      <!-- booster x4 -->
+      <button class="booster-btn" id="boosterX4">
+        <div class="booster-icon">
+          <img src="bipbip.png" alt="bipbip">
+        </div>
+        <div class="booster-price">
+          <h2 class="booster-label">Booster X4</h2>
+          <h4 class="booster-price-label">Prix : <span class="booster-price-value"> 130</span> cookies</h4>
+        </div>
+      </button>
+    </div>
+    <button class="bonus-btn" id="auto-clic">
+      <h2 class="autoClic-label">Auto clic +1</h2>
+      <h4 class="autoClic-total-label">Auto clic total: <span class="autoClic-total-value">1</span></h4>
+      <h4 class="autoClic-time-label">Générer toute les: 1 Seconde</h4>
+      <h4 class="autoClic-price-label">Prix : <span class="bonus-price-value"> 20</span> cookies</h4>
+    </button>
+    <button class="bonus-btn" id="200%">
+      <h2 class="bonus-label">Bonus 200%</span></h2>
+      <h4 class="bonus-time-label">Valable <span class="bonus-total-value">30</span> Seconde</h4>
+      <h4 class="bonus-price-label">Prix : <span class="bonus-price-value">100</span> cookies</h4>
+    </button>
+  </div>
+  <script src="app.js"></script>
+</body>
+
 </html>

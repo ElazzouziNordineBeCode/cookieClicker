@@ -12,7 +12,14 @@
 
 body {
   font-family: "Poppins", sans-serif;
+  width: 100%;
   height: 100vh;
+  user-select: none;
+}
+
+button{
+  display: block;
+  width: 200px;
 }
 
 .cookie-clic-container{
@@ -48,4 +55,24 @@ body {
 
 .booster-icon img{
   width: 70px;
+}
+
+.bonus200-container{
+  position: relative;
+  width: min-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bonus200-container .chrono{
+  position: absolute;
+  z-index: 1;
+  background-color: red;
+  color: white;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
 }

@@ -7,11 +7,14 @@ const boosters = document.querySelectorAll(".booster-btn");
 const bonusBtns = document.querySelectorAll(".bonus-btn");
 let clicAnime = document.getElementById("anime-onclic"); // the +1 at clicking cookie button
 let x, y; // to save timer of clearinterval: x for interval auto-clic, y for interval bonus 200%
+let chronoValue = document.querySelector(".chrono");
+let chrono = 30; //secondes
 
 // function to disable, by default, boosters and bonus
 const disableDefault = (btns) => {
   btns.forEach((btn) => {
     btn.disabled = true;
+    btn.style.opacity = "0.6";
     btn.style.cursor = "not-allowed";
   });
 };
@@ -63,6 +66,7 @@ const enoughCookie = (btns, classPriceValue) => {
       btn.disabled === true
     ) {
       btn.disabled = false;
+      btn.style.opacity = "1";
       btn.style.cursor = "pointer";
     }
   });
@@ -96,6 +100,7 @@ const disableButton = (btns, classPriceValue) => {
       btn.disabled === false
     ) {
       btn.disabled = true;
+      btn.style.opacity = "0.5";
       btn.style.cursor = "not-allowed";
     }
   });
@@ -186,18 +191,17 @@ bonusBtns.forEach((bonusBtn) => {
         // increase auto clic total
         autoClicValue.innerHTML = parseInt(autoClicValue.innerHTML) + 1;
         break;
-      case "200%":
-        let bonus200Value = document.querySelector(".timer-bonus200");
-        let chrono = 30; //secondes
-        bonus200Value.style.color = "red";
+      case "bonus-pourcent":
         bonus200Counter = 2;
-        clearInterval(y);
+        chronoValue.style.display = "flex";
         y = setInterval(() => {
-          bonus200Value.innerHTML = chrono--;
+          chronoValue.innerHTML = --chrono;
           chrono === -1 &&
             (clearInterval(y),
-            (bonus200Value.style.color = "unset"),
-            (bonus200Counter = 1));
+            (chrono = 30),
+            (chronoValue.innerHTML = chrono),
+            (bonus200Counter = 1),
+            (chronoValue.style.display = "none"));
         }, 1000);
         break;
     }

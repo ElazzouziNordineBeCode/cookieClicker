@@ -195,11 +195,11 @@ bonusBtns.forEach((bonusBtn) => {
         bonus200Counter = 2;
         chronoValue.style.display = "flex";
         y = setInterval(() => {
-          chronoValue.innerHTML = --chrono;
+          chronoValue.innerHTML = `${--chrono}s`;
           chrono === -1 &&
             (clearInterval(y),
             (chrono = 30),
-            (chronoValue.innerHTML = chrono),
+            (chronoValue.innerHTML = `${chrono}s`),
             (bonus200Counter = 1),
             (chronoValue.style.display = "none"));
         }, 1000);

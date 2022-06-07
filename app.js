@@ -48,7 +48,7 @@ const animeMultiplyValue = (top, left) => {
   let spanClic = document.createElement("span");
   spanClic.setAttribute("id", "anime-onclic");
   spanClic.innerHTML = `${
-    bonus200Counter === 2 ? "200%" : `+${multiplicator.innerHTML}`
+    bonus200Counter === 2 ? "200%" : `+<span style="color:white">${multiplicator.innerHTML}</span>`
   }`;
   top = top - (parseInt(Math.random() * 20) + 1); // random 1 to 10px
   left = left + (parseInt(Math.random() * 40) - 20); // random -20 to 40px
@@ -95,26 +95,59 @@ const enoughCookie = (btns, classPriceValue) => {
 
 // generate raining of cookies on background at clic cookie btn
 const rainImgs = [
-  "oreonoir.png",
-  "oreoblanc.png",
-  "oreobrun.png",
-  "princelu.png",
-  "cookie.png",
+  {
+    source: "oreonoir.png",
+    bgUrl: "bg-oreonoir.png",
+    bgColor: "#b9b9b9",
+    biscuit: "Oreos noirs",
+  },
+  {
+    source: "oreoblanc.png",
+    bgUrl: "bg-oreoblanc.png",
+    bgColor: "#fdd994",
+    biscuit: "Oreos blancs",
+  },
+  {
+    source: "oreobrun.png",
+    bgUrl: "bg-oreobrun.png",
+    bgColor: "#9e8556",
+    biscuit: "Biscuits",
+  },
+  {
+    source: "cookie.png",
+    bgUrl: "bg-cookie.png",
+    bgColor: "#532c00",
+    biscuit: "Cookies",
+  },
+  {
+    source: "princelu.png",
+    bgUrl: "bg-princelu.png",
+    bgColor: "#faf87b",
+    biscuit: "Princes Lu",
+  },
 ];
 const rainImgsSizes = ["50", "80", "100"];
 
 const cookieRain = () => {
   let img = document.createElement("img");
-  img.src = rainImgs[Math.floor(Math.random() * rainImgs.length)];
+  let rainImg = rainImgs[Math.floor(Math.random() * rainImgs.length)];
+  img.src = rainImg.source;
+  img.setAttribute("bgcolor", `${rainImg.bgColor}`);
+  img.setAttribute("bgurl", `${rainImg.bgUrl}`);
+  img.setAttribute("id", `${rainImg.biscuit}`);
   img.style.width = `${
     rainImgsSizes[Math.floor(Math.random() * rainImgsSizes.length)]
   }px`;
-  img.ondragstart=(ev)=>{
-    ev.target.style.opacity = '0.5';
-  }
-  img.ondragend=(ev)=>{
-    ev.target.style.opacity = '1';
-  }
+  img.ondragstart = (ev) => {
+    ev.target.style.opacity = "0.5";
+    ev.dataTransfer.setData("src", ev.target.getAttribute("src"));
+    ev.dataTransfer.setData("bgcolor", ev.target.getAttribute("bgcolor"));
+    ev.dataTransfer.setData("bgurl", ev.target.getAttribute("bgurl"));
+    ev.dataTransfer.setData("name", ev.target.id);
+  };
+  img.ondragend = (ev) => {
+    ev.target.style.opacity = "1";
+  };
   let span = document.createElement("span");
   span.appendChild(img);
   span.style.left = `${Math.floor(Math.random() * 100)}%`;
@@ -132,16 +165,38 @@ const cookieRain = () => {
 };
 
 // drag/drop cookieBtn
-cookieBtn.addEventListener('dragover', (ev)=>{
-  ev.preventDefault();
-  cookieBtn.style.opacity = '0.5';
-});
-cookieBtn.addEventListener('dragleave', ()=>{
-  cookieBtn.style.opacity = '1';
-});
-cookieBtn.addEventListener('drop', (ev)=>{
-  console.log('ok');
-});
+cookieBtn.addEventListener(
+  "dragover",
+  (ev) => {
+    ev.preventDefault();
+    cookieBtn.style.opacity = "0.5";
+  },
+  false
+);
+cookieBtn.addEventListener(
+  "dragleave",
+  (ev) => {
+    ev.preventDefault();
+    cookieBtn.style.opacity = "1";
+  },
+  false
+);
+cookieBtn.addEventListener(
+  "drop",
+  (ev) => {
+    ev.preventDefault();
+    cookieBtn.style.opacity = "1";
+    ev.target.src = ev.dataTransfer.getData("src", ev.target.src);
+    document.body.style.background = `url(${ev.dataTransfer.getData(
+      "bgurl",
+      ev.target.getAttribute("bgurl")
+    )}) no-repeat bottom center/contain, ${ev.dataTransfer.getData("bgcolor")}`;
+    document.querySelectorAll(".biscuit-name").forEach((biscuitLabel) => {
+      biscuitLabel.innerHTML = ev.dataTransfer.getData("name", ev.target.id);
+    });
+  },
+  false
+);
 
 // increase score at cookie clic
 cookieBtn.addEventListener("click", (e) => {

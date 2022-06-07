@@ -26,9 +26,8 @@ body {
   user-select: none;
   justify-content: center;
   align-items: center;
-  background: url("bg-cookie.png") no-repeat, #532c00;
-  background-position: bottom;
-  background-size: contain;
+  background: url("bg-cookie.png") no-repeat bottom center/contain, #532c00;
+  position: relative;
 }
 
 button {
@@ -120,9 +119,9 @@ button img {
   position: absolute;
   user-select: none;
   font-size: 1.6rem;
-  color: rgb(255, 0, 0);
   pointer-events: none;
   font-weight: bold;
+  color: rgb(0, 94, 0);
   opacity: 0;
 }
 /* END L'effet au clic de la souris sur le cookie */
@@ -213,9 +212,11 @@ button img {
 
 .bg-container {
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   overflow: hidden;
   position: absolute;
+  top: 0;
+  bottom: 0;
 }
 
 .bg-cookie{
@@ -225,6 +226,16 @@ button img {
 .bg-cookie span{
   position: absolute;
 }
+
+/* @media screen and (max-width: 900px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+  body{
+    height: 100%;
+  }
+} */
 
 /* END BACKGROUND ANIME */
 /* COPY */

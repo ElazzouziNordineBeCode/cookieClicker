@@ -26,9 +26,9 @@ body {
   user-select: none;
   justify-content: center;
   align-items: center;
-  /* BACKGROUND ANIME */
-  background: -webkit-linear-gradient(to right, #af112192, #bc4e9c);
-  background: url("./bg-01.jpg") no-repeat left/cover;
+  background: url("bg-cookie.png") no-repeat, #532c00;
+  background-position: bottom;
+  background-size: contain;
 }
 
 button {
@@ -54,8 +54,6 @@ button img {
   position: relative;
   display: flex;
   justify-content: center;
-  width: 100%;
-  width: 1000px;
 }
 
 .container-left {
@@ -68,7 +66,7 @@ button img {
   border: 5px solid white;
   border-radius: 20px;
   padding: 30px 70px;
-  background-color: rgb(0, 0, 0, 0.5);
+  background-color: rgb(0, 0, 0, 0.7);
 }
 
 /* le chiffre X1 en bas du score principal */
@@ -95,7 +93,7 @@ button img {
   justify-content: center;
 }
 
-.container.right {
+.container-right {
   width: 220px;
   display: flex;
   flex-direction: column;
@@ -220,27 +218,12 @@ button img {
   position: absolute;
 }
 
-.bg-cookie {
+.bg-cookie{
   position: relative;
-  display: flex;
 }
 
-.bg-cookie span {
-  position: relative;
-  width: 40px;
-  height: 40px;
-  margin: 0 1px;
-  animation: animate 10s linear infinite;
-  animation-duration: calc(200s / var(--i));
-}
-
-@keyframes animate {
-  0% {
-    transform: translateY(-40vh);
-  }
-  100% {
-    transform: translateY(120vh) rotate(180deg);
-  }
+.bg-cookie span{
+  position: absolute;
 }
 
 /* END BACKGROUND ANIME */

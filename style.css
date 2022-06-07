@@ -1,0 +1,195 @@
+/* --------------- */
+/* GENERAL SETTING */
+/* --------------- */
+/* COPY */
+/* COPY */
+/* COPY */
+/* COPY */
+/* COPY */
+/* COPY */
+/* COPY */
+/* COPY */
+/* COPY */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  margin-bottom: 10px;
+  border-radius: 20px;
+  height: 100px;
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+/* Setting des container de la page */
+.container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  width: 1000px;
+}
+
+.container-left {
+  width: 400px;
+  text-align: center;
+  margin-right: 20px;
+}
+
+/* le chiffre X1 en bas du score principal */
+#multiply-area h4 {
+  font-size: 30px;
+}
+
+.container.right {
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+/* End Setting des container de la page */
+
+/* L'effet au clic de la souris sur le cookie */
+.cookie-clic-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid red;
+  background: red;
+  border-radius: 20px;
+
+  
+}
+.cookie-clic {
+  cursor: pointer;
+  height: 250px;
+}
+#anime-onclic {
+  position: absolute;
+  user-select: none;
+  font-size: 1.6rem;
+  color: white;
+  pointer-events: none;
+  font-weight: bold;
+  opacity: 0;
+}
+/* END L'effet au clic de la souris sur le cookie */
+
+/* Bouton setting general */
+.booster-btn {
+  display: flex;
+  align-items: center;
+}
+
+/* Image sur les bouton booster */
+.booster-icon img {
+  width: 70px;
+}
+
+/* box des 3 icons avec notification */
+.multiply-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 20px 10px;
+  border: 1px solid black;
+  height: 100px;
+  border-radius: 20px;
+}
+
+/* Notification sous les 3 dessins */
+.notif {
+  position: relative;
+  left: -20px;
+  bottom: -30px;
+  margin-right: 20px;
+  background-color: red;
+  color: white;
+  border-radius: 20%;
+  font-weight: 700;
+  font-size: 15px;
+  width: 40px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.notif:nth-child(6){
+  margin-right: 0;
+}
+
+/* Bouton auto clic */
+#auto-clic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Case qui affiche le score */
+.label-score {
+  background-color: green;
+  color: white;
+  font-size: 25px;
+  border-radius: 20px;
+}
+
+/* Bouton background apres activation */
+/* .light {
+  border: 4px solid green;
+  background-color: green;
+  color: white;
+} */
+
+/* Bouton bonus */
+.bonus200-container {
+  position: relative;
+  width: min-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bonus200-container .chrono {
+  position: absolute;
+  z-index: 1;
+  background-color: red;
+  color: white;
+  width: 100%;
+  height: 100px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}
+.bonus-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* Fin Bouton bonus */
+
+/* COPY */
+/* COPY */
+/* COPY */
+/* COPY */
+/* COPY */
+/* COPY */
+/* COPY */
+/* COPY */
+/* COPY */

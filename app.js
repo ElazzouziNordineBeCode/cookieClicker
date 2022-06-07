@@ -71,6 +71,7 @@ const enoughCookie = (btns, classPriceValue) => {
     let btnPrice = btn.querySelector(`.${classPriceValue}`);
     if (parseInt(score.innerHTML) >= parseInt(btnPrice.innerHTML) && btn.disabled === true) {
       btn.disabled = false;
+      btn.classList.add("light");
       btn.style.opacity = "1";
       btn.style.cursor = "pointer";
     }
@@ -101,6 +102,7 @@ const disableButton = (btns, classPriceValue) => {
     let btnPrice = btn.querySelector(`.${classPriceValue}`);
     if (parseInt(score.innerHTML) < parseInt(btnPrice.innerHTML) && btn.disabled === false) {
       btn.disabled = true;
+      btn.classList.remove("light");
       btn.style.opacity = "0.5";
       btn.style.cursor = "not-allowed";
     }
@@ -166,8 +168,9 @@ bonusBtns.forEach((bonusBtn) => {
     bonusPrice.innerHTML = Math.round(parseInt(bonusPrice.innerHTML) * 1.8);
     switch (bonusBtn.id) {
       case "auto-clic":
-        let autoClicValue = document.querySelector(".autoClic-total-value");
+        let autoClicValue = document.querySelector(".timer-auto-clic");
         // setInterval = async, we use a new variable to increase score
+        autoClicValue.innerHTML = parseInt(autoClicValue.innerHTML) + 1;
         let counterAutoClic = autoClicValue.innerHTML;
         // clear previous interval before execute the new interval to delete asynchron
         clearInterval(x);
@@ -178,7 +181,6 @@ bonusBtns.forEach((bonusBtn) => {
         let timerAutoClic = document.querySelector(".timer-auto-clic");
         timerAutoClic.innerHTML = autoClicValue.innerHTML;
         // increase auto clic total
-        autoClicValue.innerHTML = parseInt(autoClicValue.innerHTML) + 1;
         break;
       case "bonus-pourcent":
         bonus200Counter = 2;

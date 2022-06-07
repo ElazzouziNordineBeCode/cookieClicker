@@ -23,8 +23,12 @@ body {
   height: 100vh;
   width: 100vw;
   display: flex;
+  user-select: none;
   justify-content: center;
   align-items: center;
+  /* BACKGROUND ANIME */
+  background: -webkit-linear-gradient(to right, #af112192, #bc4e9c);
+  background: url("./bg-01.jpg") no-repeat left/cover;
 }
 
 button {
@@ -32,9 +36,18 @@ button {
   border-radius: 20px;
   height: 100px;
   width: 250px;
-  display: flex;
+  padding: 10px;
+  background-color: rgb(0, 0, 0);
+  border: 5px solid white;
+  color: white;
+  /* display: flex;
   justify-content: center;
-  text-align: center;
+  text-align: center; */
+}
+
+button img {
+  margin-right: 20px;
+  width: 70px;
 }
 /* Setting des container de la page */
 .container {
@@ -46,44 +59,70 @@ button {
 }
 
 .container-left {
-  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
   text-align: center;
   margin-right: 20px;
+  border: 5px solid white;
+  border-radius: 20px;
+  padding: 30px 70px;
+  background-color: rgb(0, 0, 0, 0.5);
 }
 
 /* le chiffre X1 en bas du score principal */
 #multiply-area h4 {
   font-size: 30px;
+  padding: 10px;
+  color: white;
+}
+
+.container-up {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-down {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .container.right {
   width: 220px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   text-align: center;
+  width: 250px;
 }
 /* End Setting des container de la page */
 
 /* L'effet au clic de la souris sur le cookie */
 .cookie-clic-container {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid red;
-  background: red;
-  border-radius: 20px;
-
-  
+  border-radius: 50%;
 }
 .cookie-clic {
   cursor: pointer;
   height: 250px;
+  border-radius: 50%;
 }
 #anime-onclic {
   position: absolute;
   user-select: none;
   font-size: 1.6rem;
-  color: white;
+  color: rgb(255, 0, 0);
   pointer-events: none;
   font-weight: bold;
   opacity: 0;
@@ -96,11 +135,6 @@ button {
   align-items: center;
 }
 
-/* Image sur les bouton booster */
-.booster-icon img {
-  width: 70px;
-}
-
 /* box des 3 icons avec notification */
 .multiply-icons {
   display: flex;
@@ -108,9 +142,7 @@ button {
   align-items: center;
   margin-bottom: 30px;
   padding: 20px 10px;
-  border: 1px solid black;
   height: 100px;
-  border-radius: 20px;
 }
 
 /* Notification sous les 3 dessins */
@@ -131,39 +163,31 @@ button {
   align-items: center;
 }
 
-.notif:nth-child(6){
+.notif:nth-child(6) {
   margin-right: 0;
-}
-
-/* Bouton auto clic */
-#auto-clic {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 /* Case qui affiche le score */
 .label-score {
-  background-color: green;
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 5px 50px;
   color: white;
-  font-size: 25px;
-  border-radius: 20px;
 }
 
 /* Bouton background apres activation */
-/* .light {
+.light {
   border: 4px solid green;
   background-color: green;
   color: white;
-} */
+}
 
 /* Bouton bonus */
 .bonus200-container {
+  height: 100px;
   position: relative;
-  width: min-content;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 250px;
+  border-radius: 20px;
 }
 .bonus200-container .chrono {
   position: absolute;
@@ -171,19 +195,55 @@ button {
   background-color: red;
   color: white;
   width: 100%;
-  height: 100px;
+  height: 100%;
   display: none;
   justify-content: center;
   align-items: center;
   border-radius: 20px;
+  top: 0;
 }
 .bonus-btn {
   display: flex;
-  justify-content: center;
   align-items: center;
+}
+#bonus-pourcent {
+  margin-bottom: unset;
 }
 /* Fin Bouton bonus */
 
+/* BACKGROUND ANIMME */
+
+.bg-container {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: absolute;
+}
+
+.bg-cookie {
+  position: relative;
+  display: flex;
+}
+
+.bg-cookie span {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  margin: 0 1px;
+  animation: animate 10s linear infinite;
+  animation-duration: calc(200s / var(--i));
+}
+
+@keyframes animate {
+  0% {
+    transform: translateY(-40vh);
+  }
+  100% {
+    transform: translateY(120vh) rotate(180deg);
+  }
+}
+
+/* END BACKGROUND ANIME */
 /* COPY */
 /* COPY */
 /* COPY */

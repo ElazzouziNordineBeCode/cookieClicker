@@ -1,3 +1,4 @@
+import { rainImgs } from "./rainImgsList.js";
 // START BUTTON REFRESH
 
 let restart = document.getElementById("restart-btn");
@@ -6,8 +7,6 @@ restart.onclick = function () {
 };
 
 // END BUTTON REFRESH
-
-import { rainImgs } from "./js/rainImgsList.js";
 
 const cookieBtn = document.querySelector(".cookie-clic-container");
 let score = document.querySelector(".cookie-number");
@@ -20,6 +19,7 @@ let x, y; // to save timer of clearinterval: x for interval auto-clic, y for int
 let chronoValue = document.querySelector(".chrono");
 let chrono = 30; //secondes
 let popUpBtn = document.querySelector(".pop-up-play");
+
 
 popUpBtn.addEventListener("click", () => {
   document.getElementById("pop-up-main").style.display = "none";
@@ -175,6 +175,8 @@ cookieBtn.addEventListener(
 cookieBtn.addEventListener(
   "drop",
   (ev) => {
+    let songDrop = new Audio('../assets/song/song-drop.mp3');
+    songDrop.play();
     ev.preventDefault();
     cookieBtn.style.opacity = "1";
     ev.target.src = ev.dataTransfer.getData("src", ev.target.src);
@@ -245,6 +247,8 @@ const buyBoosterBonus = (btns) => {
       let multiplyIconImg;
       switch (btn.id) {
         case "boosterX2":
+          let songboostx2 = new Audio('../assets/song/song-boostx2.mp3');
+          songboostx2.play();
           // update the multiply value
           multiplicator.innerHTML = parseInt(multiplicator.innerHTML) + parseInt(`${multiplicator.innerHTML === "1" ? 1 : 2}`);
           // updtae the multiply icon
@@ -252,6 +256,8 @@ const buyBoosterBonus = (btns) => {
           multiplyIconImg = document.getElementById("multiply-icon-escargot");
           break;
         case "boosterX3":
+          let songboostx3 = new Audio('../assets/song/song-boostx3.mp3');
+          songboostx3.play();
           // update the multiply value
           multiplicator.innerHTML = parseInt(multiplicator.innerHTML) + parseInt(`${multiplicator.innerHTML === "1" ? 2 : 3}`);
           // updtae the multiply icon
@@ -259,6 +265,8 @@ const buyBoosterBonus = (btns) => {
           multiplyIconImg = document.getElementById("multiply-icon-speedy");
           break;
         case "boosterX4":
+          let songboostx4 = new Audio('../assets/song/song-boostx4.mp3');
+          songboostx4.play();
           // update the multiply value
           multiplicator.innerHTML = parseInt(multiplicator.innerHTML) + parseInt(`${multiplicator.innerHTML === "1" ? 3 : 4}`);
           // updtae the multiply icon
@@ -266,6 +274,8 @@ const buyBoosterBonus = (btns) => {
           multiplyIconImg = document.getElementById("multiply-icon-bipbip");
           break;
         case "auto-clic":
+          let songAutoClic = new Audio('../assets/song/song-autoclic.mp3');
+          songAutoClic.play();
           let autoClicValue = document.querySelector(".timer-auto-clic");
           // setInterval = async, we use a new variable to increase score
           autoClicValue.innerHTML = parseInt(autoClicValue.innerHTML) + 1;
@@ -281,6 +291,8 @@ const buyBoosterBonus = (btns) => {
           // increase auto clic total
           break;
         case "bonus-pourcent":
+          let songBonus = new Audio('../assets/song/song-bonus.mp3');
+          songBonus.play();
           bonus200Counter = 2;
           chronoValue.style.display = "flex";
           y = setInterval(() => {

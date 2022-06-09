@@ -38,7 +38,7 @@ button {
   color: white;
 }
 
-.container-right button:hover{
+.container-right button:hover {
   transition: all 0.3s ease-out;
   transform: scale(1.1);
 }
@@ -472,5 +472,11 @@ button img {
   .container-mini-cookies {
     margin-top: 5px;
     border: 5px solid white;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #restart-btn {
+    display: none;
   }
 }

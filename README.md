@@ -1,2 +1,0 @@
-# cookieClicker
-cookie Clicker projet

@@ -27,7 +27,7 @@ export const rainImgs = [
   {
     source: "assets/clic/oreobrun.png",
     bgUrl: "assets/bg/pepito.png",
-    bgColor: "#039BE5",
+    bgColor: "#689F38",
     biscuit: "Pepitos",
   },
   {

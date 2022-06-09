@@ -1,4 +1,13 @@
-import { rainImgs } from "./rainImgsList.js";
+// START BUTTON REFRESH
+
+let restart = document.getElementById("restart-btn");
+restart.onclick = function () {
+  window.location.reload();
+};
+
+// END BUTTON REFRESH
+
+import { rainImgs } from "./js/rainImgsList.js";
 
 const cookieBtn = document.querySelector(".cookie-clic-container");
 let score = document.querySelector(".cookie-number");
@@ -54,11 +63,7 @@ const animeMultiplyValue = (top, left) => {
   // keep the current multiply value and anime it at clicking
   let spanClic = document.createElement("span");
   spanClic.setAttribute("id", "anime-onclic");
-  spanClic.innerHTML = `${
-    bonus200Counter === 2
-      ? `<span style="color:white">200%</span>`
-      : `+<span style="color:white">${multiplicator.innerHTML}</span>`
-  }`;
+  spanClic.innerHTML = `${bonus200Counter === 2 ? `<span style="color:white">200%</span>` : `+<span style="color:white">${multiplicator.innerHTML}</span>`}`;
   top = top - (parseInt(Math.random() * 20) + 1); // random 1 to 10px
   left = left + (parseInt(Math.random() * 40) - 20); // random -20 to 40px
   spanClic.animate(
@@ -95,10 +100,7 @@ const animeMultiplyValue = (top, left) => {
 const enoughCookie = (btns, classPriceValue) => {
   btns.forEach((btn) => {
     let btnPrice = btn.querySelector(`.${classPriceValue}`);
-    if (
-      parseInt(score.innerHTML) >= parseInt(btnPrice.innerHTML) &&
-      btn.disabled === true
-    ) {
+    if (parseInt(score.innerHTML) >= parseInt(btnPrice.innerHTML) && btn.disabled === true) {
       btn.disabled = false;
       btn.classList.add("light");
       btn.style.opacity = "1";
@@ -113,9 +115,7 @@ const rainImgsSizes = ["50", "80", "100"];
 // cloud of cookies background
 const cookieRain = () => {
   let img = document.createElement("img");
-  img.style.width = `${
-    rainImgsSizes[Math.floor(Math.random() * rainImgsSizes.length)]
-  }px`;
+  img.style.width = `${rainImgsSizes[Math.floor(Math.random() * rainImgsSizes.length)]}px`;
   let rainImg = rainImgs[Math.floor(Math.random() * rainImgs.length)];
   img.src = rainImg.source;
   img.setAttribute("bgColor", `${rainImg.bgColor}`);
@@ -134,21 +134,15 @@ const cookieRain = () => {
   let span = document.createElement("span");
   span.appendChild(img);
   span.style.left = `${Math.floor(Math.random() * 100)}%`;
-  span.animate(
-    [
-      { transform: "translateY(-40vh)" },
-      { transform: "translateY(120vh) rotate(180deg)" },
-    ],
-    {
-      duration: 10000,
-      iterations: Infinity,
-    }
-  );
+  span.animate([{ transform: "translateY(-40vh)" }, { transform: "translateY(120vh) rotate(180deg)" }], {
+    duration: 10000,
+    iterations: Infinity,
+  });
   document.querySelector(".bg-cookie").appendChild(span);
 };
 
 // active drag for imgs on small screen
-document.querySelectorAll('.container-mini-cookies img').forEach(img=>{
+document.querySelectorAll(".container-mini-cookies img").forEach((img) => {
   img.ondragstart = (ev) => {
     ev.target.style.opacity = "0.5";
     ev.dataTransfer.setData("src", ev.target.getAttribute("src"));
@@ -184,10 +178,9 @@ cookieBtn.addEventListener(
     ev.preventDefault();
     cookieBtn.style.opacity = "1";
     ev.target.src = ev.dataTransfer.getData("src", ev.target.src);
-    document.body.style.background = `url(${ev.dataTransfer.getData(
-      "bgurl",
-      ev.target.getAttribute("bgurl")
-    )}) no-repeat bottom center/contain fixed, ${ev.dataTransfer.getData("bgColor")}`;
+    document.body.style.background = `url(${ev.dataTransfer.getData("bgurl", ev.target.getAttribute("bgurl"))}) no-repeat bottom center/contain fixed, ${ev.dataTransfer.getData(
+      "bgColor"
+    )}`;
     document.querySelectorAll(".biscuit-name").forEach((biscuitLabel) => {
       biscuitLabel.innerHTML = ev.dataTransfer.getData("name", ev.target.id);
     });
@@ -208,8 +201,7 @@ cookieBtn.addEventListener("click", (e) => {
     duration: 300,
   });
   // upate the score
-  score.innerHTML =
-    parseInt(score.innerHTML) + multiplicatorCounter * bonus200Counter;
+  score.innerHTML = parseInt(score.innerHTML) + multiplicatorCounter * bonus200Counter;
   // checking if we have enough of cookies to enable the booster
   enoughCookie(boosters, "booster-price-value");
   // checking if we have enough of cookies to enable the bonus
@@ -224,10 +216,7 @@ cookieBtn.addEventListener("click", (e) => {
 const disableButton = (btns, classPriceValue) => {
   btns.forEach((btn) => {
     let btnPrice = btn.querySelector(`${classPriceValue}`);
-    if (
-      parseInt(score.innerHTML) < parseInt(btnPrice.innerHTML) &&
-      btn.disabled === false
-    ) {
+    if (parseInt(score.innerHTML) < parseInt(btnPrice.innerHTML) && btn.disabled === false) {
       btn.disabled = true;
       btn.classList.remove("light");
       btn.style.opacity = "0.6";
@@ -237,16 +226,15 @@ const disableButton = (btns, classPriceValue) => {
 };
 
 /**
- * 
- * @param {Array} btns 
+ *
+ * @param {Array} btns
  */
-const buyBoosterBonus=(btns)=>{
+const buyBoosterBonus = (btns) => {
   btns.forEach((btn) => {
     btn.addEventListener("click", () => {
       let price = btn.querySelector('[class$="price-value"]');
       // update score at buying
-      score.innerHTML =
-        parseInt(score.innerHTML) - parseInt(price.innerHTML);
+      score.innerHTML = parseInt(score.innerHTML) - parseInt(price.innerHTML);
       // increase the booster +10%
       price.innerHTML = Math.round(parseInt(price.innerHTML) * 1.8);
       // after updating score disable button
@@ -258,27 +246,21 @@ const buyBoosterBonus=(btns)=>{
       switch (btn.id) {
         case "boosterX2":
           // update the multiply value
-          multiplicator.innerHTML =
-            parseInt(multiplicator.innerHTML) +
-            parseInt(`${multiplicator.innerHTML === "1" ? 1 : 2}`);
+          multiplicator.innerHTML = parseInt(multiplicator.innerHTML) + parseInt(`${multiplicator.innerHTML === "1" ? 1 : 2}`);
           // updtae the multiply icon
           multiplyIconValue = document.querySelector(".multiply-icon-value-x2");
           multiplyIconImg = document.getElementById("multiply-icon-escargot");
           break;
         case "boosterX3":
           // update the multiply value
-          multiplicator.innerHTML =
-            parseInt(multiplicator.innerHTML) +
-            parseInt(`${multiplicator.innerHTML === "1" ? 2 : 3}`);
+          multiplicator.innerHTML = parseInt(multiplicator.innerHTML) + parseInt(`${multiplicator.innerHTML === "1" ? 2 : 3}`);
           // updtae the multiply icon
           multiplyIconValue = document.querySelector(".multiply-icon-value-x3");
           multiplyIconImg = document.getElementById("multiply-icon-speedy");
           break;
         case "boosterX4":
           // update the multiply value
-          multiplicator.innerHTML =
-            parseInt(multiplicator.innerHTML) +
-            parseInt(`${multiplicator.innerHTML === "1" ? 3 : 4}`);
+          multiplicator.innerHTML = parseInt(multiplicator.innerHTML) + parseInt(`${multiplicator.innerHTML === "1" ? 3 : 4}`);
           // updtae the multiply icon
           multiplyIconValue = document.querySelector(".multiply-icon-value-x4");
           multiplyIconImg = document.getElementById("multiply-icon-bipbip");
@@ -291,8 +273,7 @@ const buyBoosterBonus=(btns)=>{
           // clear previous interval before execute the new interval to delete asynchron
           clearInterval(x);
           x = setInterval(() => {
-            score.innerHTML =
-              parseInt(score.innerHTML) + parseInt(counterAutoClic) * parseInt(multiplicator.innerHTML);
+            score.innerHTML = parseInt(score.innerHTML) + parseInt(counterAutoClic) * parseInt(multiplicator.innerHTML) * bonus200Counter;
           }, 1000);
           // update timer value
           let timerAutoClic = document.querySelector(".timer-auto-clic");
@@ -304,23 +285,15 @@ const buyBoosterBonus=(btns)=>{
           chronoValue.style.display = "flex";
           y = setInterval(() => {
             chronoValue.innerHTML = `${--chrono}s`;
-            chrono === -1 &&
-              (clearInterval(y),
-              (chrono = 30),
-              (chronoValue.innerHTML = `${chrono}s`),
-              (bonus200Counter = 1),
-              (chronoValue.style.display = "none"));
+            chrono === -1 && (clearInterval(y), (chrono = 30), (chronoValue.innerHTML = `${chrono}s`), (bonus200Counter = 1), (chronoValue.style.display = "none"));
           }, 1000);
           break;
       }
       // anime the icon multiply
-      if(multiplyIconImg !== undefined){
-        multiplyIconImg.animate(
-          [{ transform: "scale(1)" }, { transform: "scale(1.3)" }],
-          {
-            duration: 500,
-          }
-        );
+      if (multiplyIconImg !== undefined) {
+        multiplyIconImg.animate([{ transform: "scale(1)" }, { transform: "scale(1.3)" }], {
+          duration: 500,
+        });
         // update mulitply value
         multiplyIconValue.innerHTML = parseInt(multiplyIconValue.innerHTML) + 1;
         // update mulitply counter
@@ -328,7 +301,7 @@ const buyBoosterBonus=(btns)=>{
       }
     });
   });
-}
+};
 
 buyBoosterBonus(boosters);
 buyBoosterBonus(bonusBtns);

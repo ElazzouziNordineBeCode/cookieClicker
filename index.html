@@ -5,6 +5,8 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Game cookie clicker customized">
+  <script src="https://kit.fontawesome.com/420a2b2017.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/popup.css" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
@@ -12,22 +14,31 @@
 </head>
 
 <body>
+  <!-- START BUTTON REFRESH GAME -->
+  <btn id="restart-btn" style="--clr: #6aff3e">
+    <span>
+      <div class="toggle"><i class="fa-solid fa-arrows-rotate"></i></div>
+      <div class="btn-text">Restart</div> </span
+    ><c></c>
+  </btn>
+  <!-- END BUTTON REFRESH GAME -->
+  <!-- START PUP UP -->
   <div class="pop-up-main" id="pop-up-main">
     <div class="pop-up-opacity">
     </div>
     <div class="pop-up">
       <div class="pop-up-title-contain"><div class="pop-up-title">Les règles du jeux</div></div>
       <div class="contain-unlockBooster colomn-pop-up">
-        <div class="Txt-pop-up"><h2>Booster</h2> Accumuler suffisait de crédit biscuit pour débloquer les boosters et avancer encore plus vite dans le jeu. </div>
-        <div class="img-pop-up"><img src="./assets/popup/boost1.gif"  alt=""></div>
+        <div class="Txt-pop-up"><h2>Booster</h2><p>Accumuler suffisait de crédit biscuit pour débloquer les boosters et avancer encore plus vite dans le jeu.</p></div>
+        <div class="img-pop-up"><img src="./assets/popup/boost1.gif"  alt="gif booster"></div>
       </div>
       <div class="drag-and-drop-explain colomn-pop-up">
-        <div class="img-pop-up"><img src="./assets/popup/drag1.gif"  alt=""></div>
-        <div class="Txt-pop-up"><h2>Drag and drop</h2>Vous en avez assez de cliquer sur le même biscuit ? Changez le en l'attrapant dans sa chute et en le plaçant au centre. </div>
+        <div class="img-pop-up"><img src="./assets/popup/drag1.gif"  alt="gif drag and drop"></div>
+        <div class="Txt-pop-up"><h2>Drag and drop</h2><p>Vous en avez assez de cliquer sur le même biscuit ? Changez le en l'attrapant dans sa chute et en le plaçant au centre. </p></div>
       </div>
       <div class="bonus-explain colomn-pop-up">
-        <div class="Txt-pop-up"><h2>Bonus</h2> Bénéficier du super bonus qui double tous vos multiplicateurs réuni par clic durant 30 secondes. </div>
-        <div class="img-pop-up"><img src="./assets/popup/bonus1.gif"  alt=""></div>
+        <div class="Txt-pop-up"><h2>Bonus</h2><p>Bénéficier du super bonus qui double tous vos multiplicateurs réuni par clic durant 30 secondes.</p></div>
+        <div class="img-pop-up"><img src="./assets/popup/bonus1.gif"  alt="gif bonus"></div>
       </div>
       <div class="pop-up-play-contain">
        <div class="pop-up-play">
@@ -36,13 +47,14 @@
       </div>
     </div>
   </div>
+  <!-- END PUP UP -->
   <div class="container-mini-cookies">
-    <img src="./assets/clic/cookie.png" bgurl="./assets/bg/cookie.png" bgColor="#795548" id="Cookies" alt="">
-    <img src="./assets/clic/bn.png" bgurl="./assets/bg/bn.png" bgColor="#FFD54F" id="Bns" alt="">
-    <img src="./assets/clic/oreoblanc.png" bgurl="./assets/bg/oreo-white.png" bgColor="#00E5FF" id="Oreos blancs" alt="">
-    <img src="./assets/clic/oreobrun.png" bgurl="./assets/bg/pepito.png" bgColor="#039BE5" id="Pepitos" alt="">
-    <img src="./assets/clic/oreonoir.png" bgurl="./assets/bg/oreo-black.png" bgColor="#7C4DFF" id="Oreos noirs" alt="">
-    <img src="./assets/clic/prince.png" bgurl="./assets/bg/prince.png" bgColor="#FF1744" id="Princes Lu" alt="">
+    <img src="./assets/clic/cookie.png" bgurl="./assets/bg/cookie.png" bgColor="#795548" id="Cookies" alt="img cookie">
+    <img src="./assets/clic/bn.png" bgurl="./assets/bg/bn.png" bgColor="#FFD54F" id="Bns" alt="img bn">
+    <img src="./assets/clic/oreoblanc.png" bgurl="./assets/bg/oreo-white.png" bgColor="#00E5FF" id="Oreos blancs" alt="img Oreo blanc">
+    <img src="./assets/clic/oreobrun.png" bgurl="./assets/bg/pepito.png" bgColor="#039BE5" id="Pepitos" alt="img pepito">
+    <img src="./assets/clic/oreonoir.png" bgurl="./assets/bg/oreo-black.png" bgColor="#7C4DFF" id="Oreos noirs" alt="oreo black">
+    <img src="./assets/clic/prince.png" bgurl="./assets/bg/prince.png" bgColor="#FF1744" id="Princes Lu" alt="img prince lu">
   </div>
   <!-- background animé -->
   <div class="bg-container">
@@ -64,15 +76,15 @@
         <!-- multiplicators icons -->
         <div class="multiply-icons">
           <div class="multiply-icon">
-            <img id="multiply-icon-escargot" width="60" src="escargot-sm.png" alt="escargot-sm" />
+            <img id="multiply-icon-escargot" width="60" src="./assets/game/escargot-sm.png" alt="escargot-sm" />
             <span class="notif multiply-icon-value-x2">0</span>
           </div>
           <div class="multiply-icon">
-            <img id="multiply-icon-speedy" width="60" src="speedy-sm.png" alt="speedy-sm" />
+            <img id="multiply-icon-speedy" width="60" src="./assets/game/speedy-sm.png" alt="speedy-sm" />
             <span class="notif multiply-icon-value-x2">0</span>
           </div>
           <div class="multiply-icon">
-            <img id="multiply-icon-bipbip" width="70" src="bipbip-sm.png" alt="bipbip-sm" />
+            <img id="multiply-icon-bipbip" width="70" src="./assets/game/bipbip-sm.png" alt="bipbip-sm" />
             <span class="notif multiply-icon-value-x2">0</span>
           </div>
         </div>
@@ -80,7 +92,7 @@
       <!-- cookies button -->
       <div class="container-down">
         <div class="cookie-clic-container">
-          <img class="cookie-clic" src="cookie.png" />
+          <img class="cookie-clic" src="./assets/clic/cookie.png" alt="img cookie"  />
           <!-- to anime +1 at clicking -->
         </div>
       </div>
@@ -90,7 +102,7 @@
       <!-- booster x2 -->
       <button class="booster-btn" id="boosterX2">
         <div class="booster-icon">
-          <img src="escargot-sm.png" alt="escargot" />
+          <img src="./assets/game/escargot-sm.png" alt="escargot" />
         </div>
         <div class="booster-price">
           <h2 class="booster-label">Booster X2</h2>
@@ -101,7 +113,7 @@
       <!-- booster x3 -->
       <button class="booster-btn" id="boosterX3">
         <div class="booster-icon">
-          <img src="speedy.png" alt="speedy gonzales" />
+          <img src="./assets/game/speedy.png" alt="speedy gonzales" />
         </div>
         <div class="booster-price">
           <h2 class="booster-label">Booster X3</h2>
@@ -112,7 +124,7 @@
       <!-- booster x4 -->
       <button class="booster-btn" id="boosterX4">
         <div class="booster-icon">
-          <img src="bipbip.png" alt="bipbip" />
+          <img src="./assets/game/bipbip.png" alt="bipbip" />
         </div>
         <div class="booster-price">
           <h2 class="booster-label">Booster X4</h2>
@@ -122,12 +134,11 @@
       </button>
       <button class="bonus-btn" id="auto-clic">
         <div class="booster-icon">
-          <img src="auto-clic.png" alt="escargot" />
+          <img src="./assets/game/auto-clic.png" alt="escargot" />
         </div>
         <div class="auto-clic-text">
-          <h2 class="autoClic-label">Auto clic +1</h2>
-          <h4 class="timer"><span class="timer-auto-clic">0</span> clic / sec</h4>
-          <!-- <h4 class="autoClic-time-label">Timing: 1 Seconde</h4> -->
+          <h2 class="autoClic-label">Auto clic</h2>
+          <h4 class="timer"><span class="timer-auto-clic">0</span> / sec</h4>
           <h4 class="autoClic-price-label"><span class="bonus-price-value">20</span> <span
               class="biscuit-name">Cookies</span></h4>
         </div>
@@ -135,7 +146,7 @@
       <div class="bonus200-container">
         <button class="bonus-btn" id="bonus-pourcent">
           <div class="booster-icon">
-            <img src="bonus.png" alt="auto-clic" />
+            <img src="./assets/game/bonus.png" alt="auto-clic" />
           </div>
           <div class="bonus-text">
             <h2 class="bonus-label">Bonus 200%</span></h2>
@@ -148,16 +159,7 @@
       </div>
     </div>
   </div>
-  <script type="module" src="app.js"></script>
+  <script type="module" src="./js/app.js"></script>
 </body>
 
 </html>
-
-<!-- COPY -->
-<!-- COPY -->
-<!-- COPY -->
-<!-- COPY -->
-<!-- COPY -->
-<!-- COPY -->
-<!-- COPY -->
-<!-- COPY -->

@@ -19,7 +19,7 @@ body {
   height: 100vh;
   width: 100vw;
   display: flex;
-  user-select: none;
+  /* user-select: none; */
   justify-content: center;
   align-items: center;
   background: url("../assets/bg/cookie.png") no-repeat bottom center/contain fixed, #795548;
@@ -139,7 +139,7 @@ button img {
 }
 #anime-onclic {
   position: absolute;
-  user-select: none;
+  /* user-select: none; */
   font-size: 1.6rem;
   pointer-events: none;
   font-weight: bold;

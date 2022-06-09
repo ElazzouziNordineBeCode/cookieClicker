@@ -1,12 +1,4 @@
-// COPY
-// COPY
-// COPY
-// COPY
-// COPY
-// COPY
-// COPY
-// COPY
-// COPY
+import { rainImgs } from "./rainImgsList.js";
 
 const cookieBtn = document.querySelector(".cookie-clic-container");
 let score = document.querySelector(".cookie-number");
@@ -15,12 +7,21 @@ let multiplicatorCounter = 1; // increase score
 let bonus200Counter = 1;
 const boosters = document.querySelectorAll(".booster-btn");
 const bonusBtns = document.querySelectorAll(".bonus-btn");
-let clicAnime = document.getElementById("anime-onclic"); // the +1 at clicking cookie button
 let x, y; // to save timer of clearinterval: x for interval auto-clic, y for interval bonus 200%
 let chronoValue = document.querySelector(".chrono");
 let chrono = 30; //secondes
+let popUpBtn = document.querySelector(".pop-up-play");
 
-// function to disable, by default, boosters and bonus
+popUpBtn.addEventListener("click", () => {
+  document.getElementById("pop-up-main").style.display = "none";
+  document.getElementById("pop-up-main").style.transition = "0.5s";
+  document.body.style.overflowY = "auto";
+});
+/**
+ *
+ * @param {Array} btns
+ * disable all btns by default
+ */
 const disableDefault = (btns) => {
   btns.forEach((btn) => {
     btn.disabled = true;
@@ -29,26 +30,34 @@ const disableDefault = (btns) => {
   });
 };
 
-// disable boosters
 disableDefault(boosters);
 
-// disable bonus
 disableDefault(bonusBtns);
 
-// disable drag/drop for all images by default
-document.querySelectorAll("img").forEach((img) => {
+// disable by default drag/drop for all images
+document.querySelectorAll(".container img").forEach((img) => {
+  /**
+   *
+   * @returns false
+   */
   img.ondragstart = () => {
     return false;
   };
 });
 
-// function to anime +1 at clicking
+/**
+ *
+ * @param {number} top : ;
+ * @param {number} left
+ */
 const animeMultiplyValue = (top, left) => {
   // keep the current multiply value and anime it at clicking
   let spanClic = document.createElement("span");
   spanClic.setAttribute("id", "anime-onclic");
   spanClic.innerHTML = `${
-    bonus200Counter === 2 ? "200%" : `+<span style="color:white">${multiplicator.innerHTML}</span>`
+    bonus200Counter === 2
+      ? `<span style="color:white">200%</span>`
+      : `+<span style="color:white">${multiplicator.innerHTML}</span>`
   }`;
   top = top - (parseInt(Math.random() * 20) + 1); // random 1 to 10px
   left = left + (parseInt(Math.random() * 40) - 20); // random -20 to 40px
@@ -77,7 +86,12 @@ const animeMultiplyValue = (top, left) => {
   }, 1600);
 };
 
-// function to check if we have enough of cookies to buy
+/**
+ *
+ * @param {Array} btns
+ * @param {string} classPriceValue
+ * function to check if we have enough of cookies to buy
+ */
 const enoughCookie = (btns, classPriceValue) => {
   btns.forEach((btn) => {
     let btnPrice = btn.querySelector(`.${classPriceValue}`);
@@ -93,55 +107,24 @@ const enoughCookie = (btns, classPriceValue) => {
   });
 };
 
-// generate raining of cookies on background at clic cookie btn
-const rainImgs = [
-  {
-    source: "oreonoir.png",
-    bgUrl: "bg-oreonoir.png",
-    bgColor: "#b9b9b9",
-    biscuit: "Oreos noirs",
-  },
-  {
-    source: "oreoblanc.png",
-    bgUrl: "bg-oreoblanc.png",
-    bgColor: "#fdd994",
-    biscuit: "Oreos blancs",
-  },
-  {
-    source: "oreobrun.png",
-    bgUrl: "bg-oreobrun.png",
-    bgColor: "#9e8556",
-    biscuit: "Biscuits",
-  },
-  {
-    source: "cookie.png",
-    bgUrl: "bg-cookie.png",
-    bgColor: "#532c00",
-    biscuit: "Cookies",
-  },
-  {
-    source: "princelu.png",
-    bgUrl: "bg-princelu.png",
-    bgColor: "#faf87b",
-    biscuit: "Princes Lu",
-  },
-];
+// widths
 const rainImgsSizes = ["50", "80", "100"];
 
+// cloud of cookies background
 const cookieRain = () => {
   let img = document.createElement("img");
-  let rainImg = rainImgs[Math.floor(Math.random() * rainImgs.length)];
-  img.src = rainImg.source;
-  img.setAttribute("bgcolor", `${rainImg.bgColor}`);
-  img.setAttribute("bgurl", `${rainImg.bgUrl}`);
-  img.setAttribute("id", `${rainImg.biscuit}`);
   img.style.width = `${
     rainImgsSizes[Math.floor(Math.random() * rainImgsSizes.length)]
   }px`;
+  let rainImg = rainImgs[Math.floor(Math.random() * rainImgs.length)];
+  img.src = rainImg.source;
+  img.setAttribute("bgColor", `${rainImg.bgColor}`);
+  img.setAttribute("bgurl", `${rainImg.bgUrl}`);
+  img.setAttribute("id", `${rainImg.biscuit}`);
   img.ondragstart = (ev) => {
     ev.target.style.opacity = "0.5";
     ev.dataTransfer.setData("src", ev.target.getAttribute("src"));
-    ev.dataTransfer.setData("bgcolor", ev.target.getAttribute("bgcolor"));
+    ev.dataTransfer.setData("bgColor", ev.target.getAttribute("bgcolor"));
     ev.dataTransfer.setData("bgurl", ev.target.getAttribute("bgurl"));
     ev.dataTransfer.setData("name", ev.target.id);
   };
@@ -163,6 +146,20 @@ const cookieRain = () => {
   );
   document.querySelector(".bg-cookie").appendChild(span);
 };
+
+// active drag for imgs on small screen
+document.querySelectorAll('.container-mini-cookies img').forEach(img=>{
+  img.ondragstart = (ev) => {
+    ev.target.style.opacity = "0.5";
+    ev.dataTransfer.setData("src", ev.target.getAttribute("src"));
+    ev.dataTransfer.setData("bgColor", ev.target.getAttribute("bgcolor"));
+    ev.dataTransfer.setData("bgurl", ev.target.getAttribute("bgurl"));
+    ev.dataTransfer.setData("name", ev.target.id);
+  };
+  img.ondragend = (ev) => {
+    ev.target.style.opacity = "1";
+  };
+});
 
 // drag/drop cookieBtn
 cookieBtn.addEventListener(
@@ -190,7 +187,7 @@ cookieBtn.addEventListener(
     document.body.style.background = `url(${ev.dataTransfer.getData(
       "bgurl",
       ev.target.getAttribute("bgurl")
-    )}) no-repeat bottom center/contain, ${ev.dataTransfer.getData("bgcolor")}`;
+    )}) no-repeat bottom center/contain fixed, ${ev.dataTransfer.getData("bgColor")}`;
     document.querySelectorAll(".biscuit-name").forEach((biscuitLabel) => {
       biscuitLabel.innerHTML = ev.dataTransfer.getData("name", ev.target.id);
     });
@@ -201,7 +198,7 @@ cookieBtn.addEventListener(
 // increase score at cookie clic
 cookieBtn.addEventListener("click", (e) => {
   // generate raining of cookies on background at clic cookie btn
-  cookieRain();
+  parseInt(score.innerHTML) <= 50 && cookieRain();
   // keep position of cursor at clicking and anime +1
   let top = e.offsetY;
   let left = e.offsetX;
@@ -219,133 +216,119 @@ cookieBtn.addEventListener("click", (e) => {
   enoughCookie(bonusBtns, "bonus-price-value");
 });
 
-// function to disable bonus and booster
+/**
+ *
+ * @param {Array} btns
+ * @param {string} classPriceValue
+ */
 const disableButton = (btns, classPriceValue) => {
   btns.forEach((btn) => {
-    let btnPrice = btn.querySelector(`.${classPriceValue}`);
+    let btnPrice = btn.querySelector(`${classPriceValue}`);
     if (
       parseInt(score.innerHTML) < parseInt(btnPrice.innerHTML) &&
       btn.disabled === false
     ) {
       btn.disabled = true;
       btn.classList.remove("light");
-      btn.style.opacity = "0.5";
+      btn.style.opacity = "0.6";
       btn.style.cursor = "not-allowed";
     }
   });
 };
 
-// buy a booster
-boosters.forEach((booster) => {
-  booster.addEventListener("click", () => {
-    let boosterPrice = booster.querySelector(".booster-price-value");
-    // update score at buying
-    score.innerHTML =
-      parseInt(score.innerHTML) - parseInt(boosterPrice.innerHTML);
-    // increase the booster +10%
-    boosterPrice.innerHTML = Math.round(parseInt(boosterPrice.innerHTML) * 1.8);
-    // after updating score disable booster wich we can't buy it
-    disableButton(boosters, "booster-price-value");
-    // after updating score disable bonus wich we can't buy it
-    disableButton(bonusBtns, "bonus-price-value");
-    // update the multiplicator depending the booster clicked
-    let multiplyIconValue;
-    let multiplyIconImg;
-    switch (booster.id) {
-      case "boosterX2":
-        // update the multiply value
-        multiplicator.innerHTML =
-          parseInt(multiplicator.innerHTML) +
-          parseInt(`${multiplicator.innerHTML === "1" ? 1 : 2}`);
-        // updtae the multiply icon
-        multiplyIconValue = document.querySelector(".multiply-icon-value-x2");
-        multiplyIconImg = document.getElementById("multiply-icon-escargot");
-        break;
-      case "boosterX3":
-        // update the multiply value
-        multiplicator.innerHTML =
-          parseInt(multiplicator.innerHTML) +
-          parseInt(`${multiplicator.innerHTML === "1" ? 2 : 3}`);
-        // updtae the multiply icon
-        multiplyIconValue = document.querySelector(".multiply-icon-value-x3");
-        multiplyIconImg = document.getElementById("multiply-icon-speedy");
-        break;
-      case "boosterX4":
-        // update the multiply value
-        multiplicator.innerHTML =
-          parseInt(multiplicator.innerHTML) +
-          parseInt(`${multiplicator.innerHTML === "1" ? 3 : 4}`);
-        // updtae the multiply icon
-        multiplyIconValue = document.querySelector(".multiply-icon-value-x4");
-        multiplyIconImg = document.getElementById("multiply-icon-bipbip");
-        break;
-    }
-    // anime the icon multiply
-    multiplyIconImg.animate(
-      [{ transform: "scale(1)" }, { transform: "scale(1.3)" }],
-      {
-        duration: 500,
+/**
+ * 
+ * @param {Array} btns 
+ */
+const buyBoosterBonus=(btns)=>{
+  btns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      let price = btn.querySelector('[class$="price-value"]');
+      // update score at buying
+      score.innerHTML =
+        parseInt(score.innerHTML) - parseInt(price.innerHTML);
+      // increase the booster +10%
+      price.innerHTML = Math.round(parseInt(price.innerHTML) * 1.8);
+      // after updating score disable button
+      disableButton(boosters, '[class$="price-value"]');
+      disableButton(bonusBtns, '[class$="price-value"]');
+      // update the multiplicator depending the booster clicked
+      let multiplyIconValue;
+      let multiplyIconImg;
+      switch (btn.id) {
+        case "boosterX2":
+          // update the multiply value
+          multiplicator.innerHTML =
+            parseInt(multiplicator.innerHTML) +
+            parseInt(`${multiplicator.innerHTML === "1" ? 1 : 2}`);
+          // updtae the multiply icon
+          multiplyIconValue = document.querySelector(".multiply-icon-value-x2");
+          multiplyIconImg = document.getElementById("multiply-icon-escargot");
+          break;
+        case "boosterX3":
+          // update the multiply value
+          multiplicator.innerHTML =
+            parseInt(multiplicator.innerHTML) +
+            parseInt(`${multiplicator.innerHTML === "1" ? 2 : 3}`);
+          // updtae the multiply icon
+          multiplyIconValue = document.querySelector(".multiply-icon-value-x3");
+          multiplyIconImg = document.getElementById("multiply-icon-speedy");
+          break;
+        case "boosterX4":
+          // update the multiply value
+          multiplicator.innerHTML =
+            parseInt(multiplicator.innerHTML) +
+            parseInt(`${multiplicator.innerHTML === "1" ? 3 : 4}`);
+          // updtae the multiply icon
+          multiplyIconValue = document.querySelector(".multiply-icon-value-x4");
+          multiplyIconImg = document.getElementById("multiply-icon-bipbip");
+          break;
+        case "auto-clic":
+          let autoClicValue = document.querySelector(".timer-auto-clic");
+          // setInterval = async, we use a new variable to increase score
+          autoClicValue.innerHTML = parseInt(autoClicValue.innerHTML) + 1;
+          let counterAutoClic = autoClicValue.innerHTML;
+          // clear previous interval before execute the new interval to delete asynchron
+          clearInterval(x);
+          x = setInterval(() => {
+            score.innerHTML =
+              parseInt(score.innerHTML) + parseInt(counterAutoClic) * parseInt(multiplicator.innerHTML);
+          }, 1000);
+          // update timer value
+          let timerAutoClic = document.querySelector(".timer-auto-clic");
+          timerAutoClic.innerHTML = autoClicValue.innerHTML;
+          // increase auto clic total
+          break;
+        case "bonus-pourcent":
+          bonus200Counter = 2;
+          chronoValue.style.display = "flex";
+          y = setInterval(() => {
+            chronoValue.innerHTML = `${--chrono}s`;
+            chrono === -1 &&
+              (clearInterval(y),
+              (chrono = 30),
+              (chronoValue.innerHTML = `${chrono}s`),
+              (bonus200Counter = 1),
+              (chronoValue.style.display = "none"));
+          }, 1000);
+          break;
       }
-    );
-    // update mulitply value
-    multiplyIconValue.innerHTML = parseInt(multiplyIconValue.innerHTML) + 1;
-    // update mulitply counter
-    multiplicatorCounter = parseInt(multiplicator.innerHTML);
+      // anime the icon multiply
+      if(multiplyIconImg !== undefined){
+        multiplyIconImg.animate(
+          [{ transform: "scale(1)" }, { transform: "scale(1.3)" }],
+          {
+            duration: 500,
+          }
+        );
+        // update mulitply value
+        multiplyIconValue.innerHTML = parseInt(multiplyIconValue.innerHTML) + 1;
+        // update mulitply counter
+        multiplicatorCounter = parseInt(multiplicator.innerHTML);
+      }
+    });
   });
-});
+}
 
-// buy a bonus
-bonusBtns.forEach((bonusBtn) => {
-  bonusBtn.addEventListener("click", () => {
-    let bonusPrice = bonusBtn.querySelector(".bonus-price-value");
-    // update score at buying
-    score.innerHTML =
-      parseInt(score.innerHTML) - parseInt(bonusPrice.innerHTML);
-    // increase the booster +10%
-    bonusPrice.innerHTML = Math.round(parseInt(bonusPrice.innerHTML) * 1.8);
-    switch (bonusBtn.id) {
-      case "auto-clic":
-        let autoClicValue = document.querySelector(".timer-auto-clic");
-        // setInterval = async, we use a new variable to increase score
-        autoClicValue.innerHTML = parseInt(autoClicValue.innerHTML) + 1;
-        let counterAutoClic = autoClicValue.innerHTML;
-        // clear previous interval before execute the new interval to delete asynchron
-        clearInterval(x);
-        x = setInterval(() => {
-          score.innerHTML =
-            parseInt(score.innerHTML) + parseInt(counterAutoClic);
-        }, 1000);
-        // update timer value
-        let timerAutoClic = document.querySelector(".timer-auto-clic");
-        timerAutoClic.innerHTML = autoClicValue.innerHTML;
-        // increase auto clic total
-        break;
-      case "bonus-pourcent":
-        bonus200Counter = 2;
-        chronoValue.style.display = "flex";
-        y = setInterval(() => {
-          chronoValue.innerHTML = `${--chrono}s`;
-          chrono === -1 &&
-            (clearInterval(y),
-            (chrono = 30),
-            (chronoValue.innerHTML = `${chrono}s`),
-            (bonus200Counter = 1),
-            (chronoValue.style.display = "none"));
-        }, 1000);
-        break;
-    }
-    // after updating score disable booster wich we can't buy it
-    disableButton(boosters, "booster-price-value");
-    // after updating score disable bonus wich we can't buy it
-    disableButton(bonusBtns, "bonus-price-value");
-  });
-});
-
-// COPY
-// COPY
-// COPY
-// COPY
-// COPY
-// COPY
-// COPY
-// COPY
+buyBoosterBonus(boosters);
+buyBoosterBonus(bonusBtns);

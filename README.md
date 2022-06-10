@@ -4,7 +4,7 @@
 
 # Site en ligne
 
-Acceder au jeu en cliquant ici sur GuitHub (MP3 non pris en charge): [Jeu en ligne](https://elazzouzinordinebecode.github.io/cookieClicker/)
+Acceder au jeu en cliquant ici sur GuitHub (MP3 non pris en charge): [Jeu en ligne](https://elazzouzinordinebecode.github.io/cookieClicker/)  
 Sur Netlify avec MP3 pris en charge : [ICI](https://cookie-game.netlify.app/)
 
 ## Régles du jeu
